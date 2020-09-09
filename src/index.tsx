@@ -1,7 +1,7 @@
 import * as React from "react";
 import { render } from "react-dom";
 
-import App from "./App";
+import Card from "./Card";
 
 const rootElement = document.getElementById("root");
-render(<App />, rootElement);
+render(<Card />, rootElement);
