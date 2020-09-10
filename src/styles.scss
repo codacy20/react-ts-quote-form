@@ -1,7 +1,23 @@
 .card-container {
-  font-family: sans-serif;
-  text-align: center;
+  width: 550px;
+  max-width: 70vw;
+  min-height: 40vh;
+  background: white;
+  box-shadow: 14px 14px 40px 0 rgba(118, 126, 173, 0.1);
+  border-radius: 15px;
+  padding: 0 25px 25px 25px;
+  position: relative;
+  .exit{
+    position: absolute;
+    top: 2vh;
+    right: 3.25vw;
+    color: black;
+  }
 }
 body {
   background-color: #f6fcff;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  height: 90vh; 
 }

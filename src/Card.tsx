@@ -1,11 +1,14 @@
 import * as React from "react";
+import Form from "./form/Form";
 import "./styles.scss";
 
 export default function Card() {
   return (
     <div className="card-container">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <a href="#" className="exit">
+        <span className="material-icons">close</span>
+      </a>
+      <Form />
     </div>
   );
 }
