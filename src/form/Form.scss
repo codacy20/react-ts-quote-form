@@ -1,0 +1,53 @@
+.form-container{
+  .field{
+    label{
+      padding-right: 7px;
+      color: #637178;
+      font-size: 18px;
+      line-height: 40px;
+      font-weight: 300;
+      letter-spacing: -0.2px;
+    }
+    input {
+      display: inline-block;
+      width: 200px;
+      height: 40px;
+      margin-bottom: 0px;
+      padding-bottom: 10px;
+      padding-left: 8px;
+      border-style: none none solid;
+      border-bottom-width: 2px;
+      border-bottom-color: #ebecf0;
+      opacity: 0.5;
+      font-size: 18px;
+      line-height: 40px;
+      outline: 0;
+    }
+    input:focus {
+      border-bottom-width: 2px;
+      border-bottom-color: #7540ee;
+      opacity: 1;
+      color: #7540ee;
+    }
+    input:focus::placeholder { opacity: 0; } /* Modern Browsers */
+    label:first-letter{
+      text-transform: capitalize;
+    }
+    padding: 5px 0;
+  }
+  button{
+    width: 100%;
+    min-height: 55px;
+    margin-top: 25px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border-radius: 4px;
+    background-color: #7540ee;
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 0;
+  }
+}
