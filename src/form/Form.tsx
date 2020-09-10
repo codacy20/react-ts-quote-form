@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Form.scss";
 
 export default function Form() {
@@ -8,9 +9,43 @@ export default function Form() {
   const [ask, setAsk] = useState("");
   const [budget, setBudget] = useState(0);
   const [time, setTime] = useState(0);
+  const [data, setData] = useState([]);
+
+  async function fetchData() {
+    const result = await axios(
+      "https://5f59f40eb121580016cadfef.mockapi.io/api/react-ts-quote-form"
+    );
+    setData(result.data);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  function submit() {
+    const postData = async () => {
+      const result = await axios({
+        method: "post",
+        url:
+          "https://5f59f40eb121580016cadfef.mockapi.io/api/react-ts-quote-form",
+        data: {
+          name,
+          email,
+          ask,
+          budget,
+          time
+        }
+      });
+    };
+    postData();
+    setTimeout(() => {
+      fetchData();
+    }, 1000);
+  }
 
   return (
     <div>
+      <span>How many people registered? {data.length} so far!</span>
       <div>
         <label htmlFor="one">name</label>
         <input type="text" id="one" onChange={(e) => setName(e.target.value)} />
@@ -47,7 +82,7 @@ export default function Form() {
           onChange={(e) => setTime(Number(e.target.value))}
         />
       </div>
-      <button>Submit</button>
+      <button onClick={submit}>Submit</button>
     </div>
   );
 }
