@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Header from "../header/Header";
+import Button from "../button/Button";
 import axios from "axios";
 import "./Form.scss";
 
@@ -10,6 +12,7 @@ export default function Form() {
   const [budget, setBudget] = useState(0);
   const [time, setTime] = useState(0);
   const [data, setData] = useState([]);
+  const [requested, setRequest] = useState(0);
 
   async function fetchData() {
     const result = await axios(
@@ -23,36 +26,40 @@ export default function Form() {
   }, []);
 
   function submit() {
-    const postData = async () => {
-      const result = await axios({
-        method: "post",
-        url:
-          "https://5f59f40eb121580016cadfef.mockapi.io/api/react-ts-quote-form",
-        data: {
-          name,
-          email,
-          ask,
-          budget,
-          time
-        }
-      });
-    };
-    postData();
-    setTimeout(() => {
-      fetchData();
-    }, 1000);
+    if (requested < 1) {
+      const postData = async () => {
+        setRequest(1);
+        const result = await axios({
+          method: "post",
+          url:
+            "https://5f59f40eb121580016cadfef.mockapi.io/api/react-ts-quote-form",
+          data: {
+            name,
+            email,
+            ask,
+            budget,
+            time
+          }
+        }).then(() => {
+          setRequest(2);
+        });
+      };
+      postData();
+      setTimeout(() => {
+        fetchData();
+      }, 1000);
+    }
   }
 
   return (
     <div className="form-container">
-      <span>How many people registered? {data?.length} so far!</span>
+      <Header />
       <div className="field">
         <label htmlFor="one">Hey, my name is </label>
         <input
           type="text"
           id="one"
           autoComplete="off"
-          onFocus={(placeholder = "")}
           placeholder={data[0]?.name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -60,7 +67,7 @@ export default function Form() {
       <div className="field">
         <label htmlFor="two">My email address is</label>
         <input
-          type="text"
+          type="email"
           id="two"
           autoComplete="off"
           placeholder={data[0]?.email}
@@ -97,7 +104,10 @@ export default function Form() {
           onChange={(e) => setTime(Number(e.target.value))}
         />
       </div>
-      <button onClick={submit}>Submit</button>
+      <Button submit={submit} requested={requested} />
+      <div>
+        <span>How many people registered? {data?.length} so far!</span>
+      </div>
     </div>
   );
 }
