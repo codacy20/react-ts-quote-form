@@ -16,7 +16,7 @@ export default function Form() {
 
   async function fetchData() {
     const result = await axios(
-      "https://5f59f40eb121580016cadfef.mockapi.io/api/react-ts-quote-form"
+      "https://5f59f40eb121580016cadfef.mockapi.io/api/QUOTE-FORM"
     );
     setData(result.data);
   }
@@ -31,8 +31,7 @@ export default function Form() {
         setRequest(1);
         const result = await axios({
           method: "post",
-          url:
-            "https://5f59f40eb121580016cadfef.mockapi.io/api/react-ts-quote-form",
+          url: "https://5f59f40eb121580016cadfef.mockapi.io/api/QUOTE-FORM",
           data: {
             name,
             email,
@@ -60,7 +59,7 @@ export default function Form() {
           type="text"
           id="one"
           autoComplete="off"
-          placeholder={data[0]?.name}
+          placeholder="Evan Streich"
           onChange={(e) => setName(e.target.value)}
         />
       </div>
@@ -70,7 +69,7 @@ export default function Form() {
           type="email"
           id="two"
           autoComplete="off"
-          placeholder={data[0]?.email}
+          placeholder="Janae.Rogahn@hotmail.com"
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
@@ -80,7 +79,7 @@ export default function Form() {
           type="text"
           id="three"
           autoComplete="off"
-          placeholder={data[0]?.ask}
+          placeholder="Web developer"
           onChange={(e) => setAsk(e.target.value)}
         />
       </div>
@@ -90,7 +89,7 @@ export default function Form() {
           type="text"
           id="four"
           autoComplete="off"
-          placeholder={data[0]?.budget}
+          placeholder="23.18"
           onChange={(e) => setBudget(Number(e.target.value))}
         />
       </div>
@@ -100,7 +99,7 @@ export default function Form() {
           type="text"
           id="five"
           autoComplete="off"
-          placeholder={data[0]?.time}
+          placeholder="33"
           onChange={(e) => setTime(Number(e.target.value))}
         />
       </div>
